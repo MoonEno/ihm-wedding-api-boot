@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ihm.wd.wedding.guest">
+
+<!--    <resultMap type="kr.co.openit.openmallbackmd.api.bd.inq.dto.InqDTO" id="inqMap">-->
+<!--        <result column="INQ_TGT_PROD_SRNO" property="inqTgtProdSrno"/>-->
+<!--        <result column="PROD_INQ_SRNO" property="prodInqSrno"/>-->
+<!--        <result column="INQ_USER_DIV_CD" property="inqUserDivCd"/>-->
+<!--        <result column="INQ_TITL_NM" property="inqTitlNm"/>-->
+<!--        <result column="PROD_INQ_TYP_CD" property="prodInqTypCd"/>-->
+<!--        <result column="PROD_INQ_TYP_CD_NM" property="prodInqTypCdNm"/>-->
+<!--        <result column="CNT" property="cnt"/>-->
+<!--        <result column="INQ_USER_ID" property="inqUserId"/>-->
+<!--        <result column="INQ_USER_NCK_NM" property="inqUserNckNm"/>-->
+<!--        <result column="INQ_DTM" property="inqDtm"/>-->
+<!--        <result column="ANS_DTM" property="ansDtm"/>-->
+<!--        <result column="REG_DTM" property="regDtm"/>-->
+<!--        <result column="CHG_DTM" property="chgDtm"/>-->
+<!--        <result column="MSG_CTT" property="msgCtt" />-->
+<!--        <collection property="product" resultMap="prdtMap"/>-->
+<!--    </resultMap>-->
+
+
+<!--  <select id="selectInqList" parameterType="kr.co.openit.openmallbackmd.api.bd.inq.dto.SearchInqDTO" resultMap="inqMap">-->
+<!--     SELECT A.* FROM (-->
+<!--        SELECT COUNT(DISTINCT MAIN.INQ_USER_DIV_CD) AS CNT-->
+<!--             , GROUP_CONCAT(MAIN.INQ_USER_ID) AS INQ_USER_ID-->
+<!--             , GROUP_CONCAT(MAIN.INQ_DTM) AS INQ_DTM-->
+<!--             , GROUP_CONCAT(MAIN.ANS_DTM) AS ANS_DTM-->
+<!--             , MAIN.INQ_TGT_PROD_SRNO-->
+<!--             , MAIN.PROD_ID-->
+<!--             , MAIN.PROD_NM-->
+<!--             , MAIN.INQ_USER_NCK_NM-->
+<!--             , MAIN.INQ_USER_DIV_CD-->
+<!--             , MAIN.INQ_TITL_NM-->
+<!--             , MAIN.PROD_INQ_TYP_CD-->
+<!--             , MAIN.COM_CD_NM as PROD_INQ_TYP_CD_NM-->
+<!--             , MAIN.MSG_CTT-->
+<!--        FROM (-->
+<!--              SELECT A.INQ_TGT_PROD_SRNO-->
+<!--                   , B.PROD_INQ_SRNO-->
+<!--                   , A.PROD_ID-->
+<!--                   , A.PROD_NM-->
+<!--                   , A.USER_NCK_NM-->
+<!--                   , B.INQ_USER_DIV_CD-->
+<!--                   , A.INQ_TITL_NM-->
+<!--                   , C.COM_CD_NM-->
+<!--                   , A.PROD_INQ_TYP_CD-->
+<!--                   , B.MSG_CTT-->
+<!--                   , IF(B.INQ_USER_DIV_CD = '10210001', A.INQ_USER_ID, NULL) AS INQ_USER_ID-->
+<!--                   , IF(B.INQ_USER_DIV_CD = '10210001', A.USER_NCK_NM, NULL) AS INQ_USER_NCK_NM-->
+<!--                   , IF(B.INQ_USER_DIV_CD = '10210001', A.REG_DTM , NULL) AS INQ_DTM-->
+<!--                   , IF(B.INQ_USER_DIV_CD = '10210002', B.CHG_DTM, NULL) AS ANS_DTM-->
+<!--                FROM BD_PROD_INF_INQ_BAS A JOIN-->
+<!--                     BD_PROD_INQ_DTS B ON A.INQ_TGT_PROD_SRNO = B.INQ_TGT_PROD_SRNO LEFT OUTER JOIN-->
+<!--                     CM_COM_CD C ON C.COM_CD = A.PROD_INQ_TYP_CD-->
+<!--               WHERE A.DEL_YN = 'N'-->
+<!--                 AND A.PTN_USER_ID = #{ ptnUserId }-->
+<!--                 AND B.DEL_YN = 'N'-->
+<!--                 AND A.PTN_USER_ID = #{ptnUserId}-->
+<!--               GROUP BY A.INQ_TGT_PROD_SRNO, B.PROD_INQ_SRNO, A.PROD_ID, A.INQ_TITL_NM, A.PROD_INQ_TYP_CD, A.INQ_USER_ID, A.USER_NCK_NM, INQ_DTM, ANS_DTM-->
+<!--              ) MAIN-->
+<!--         WHERE 1=1-->
+<!--         GROUP BY MAIN.INQ_TGT_PROD_SRNO-->
+<!--     ) A-->
+<!--     WHERE 1=1-->
+<!--     <if test='bbmTitlNm != null and bbmTitlNm != "" and searchKeywordType =="regUserId"'>-->
+<!--       AND A.INQ_USER_NCK_NM LIKE CONCAT('%',#{bbmTitlNm},'%')-->
+<!--     </if>-->
+<!--     <if test='bbmTitlNm != null and bbmTitlNm != "" and searchKeywordType =="prodNm"'>-->
+<!--       AND A.PROD_NM LIKE CONCAT('%',#{bbmTitlNm},'%')-->
+<!--     </if>-->
+<!--     <if test='bbmTitlNm != null and bbmTitlNm != "" and searchKeywordType =="msgCtt"'>-->
+<!--       AND A.MSG_CTT LIKE CONCAT('%',#{bbmTitlNm},'%')-->
+<!--     </if> -->
+
+<!--    <if test='starDate != null and starDate != "" and endDate != null and endDate != ""'>-->
+<!--        <if test='searchDatetype != null and searchDatetype =="regDate"'>-->
+<!--        AND INQ_DTM &gt;= STR_TO_DATE(CONCAT(#{starDate},' 00:00:00'), '%Y-%m-%d %H:%i:%s') AND INQ_DTM &lt;= STR_TO_DATE(CONCAT(#{endDate},' 23:59:59'),'%Y-%m-%d %H:%i:%s')-->
+<!--        </if>-->
+<!--        <if test='searchDatetype != null and searchDatetype =="chgDate"'>-->
+<!--        AND ANS_DTM &gt;= STR_TO_DATE(CONCAT(#{starDate},' 00:00:00'), '%Y-%m-%d %H:%i:%s') AND ANS_DTM &lt;= STR_TO_DATE(CONCAT(#{endDate},' 23:59:59'),'%Y-%m-%d %H:%i:%s')-->
+<!--        </if>-->
+<!--     </if>-->
+
+<!--     <if test='inqTyp != null and inqTyp.size != 0'>-->
+<!--       AND PROD_INQ_TYP_CD IN-->
+<!--          <foreach collection="inqTyp" item="item" index="index" separator="," open="(" close=")">-->
+<!--                #{item}-->
+<!--          </foreach>-->
+<!--     </if>-->
+
+<!--     <if test='replyStatus != null and replyStatus.size != 0'>-->
+<!--       AND CNT IN-->
+<!--          <foreach collection="replyStatus" item="item" index="index" separator="," open="(" close=")">-->
+<!--                #{item}-->
+<!--          </foreach>-->
+<!--     </if>-->
+<!--     ORDER BY A.INQ_DTM DESC-->
+<!--      <include refid="common.limitPage"/>-->
+<!--    </select>-->
+
+    <select id="selectTargetGuest" parameterType="kr.co.ihm.wedding.api.wd.guest.model.GuestSearchDTO"  resultType="kr.co.ihm.wedding.api.wd.guest.model.GuestDTO">
+     SELECT A.*
+        FROM (  SELECT
+		        WGB.GUEST_SRNO
+		      , WGB.USER_SRNO
+		      , WGB.GUEST_GRPNO
+		      , WGB.GUEST_NAME
+		      , WGB.GUEST_AGE
+		      , WGB.GUEST_PHONE
+		      , WGB.GUEST_FILE
+		      , WUB.USER_NAME
+		      , WUB.USER_RELATE
+		      , COM.COM_VALUE as userBankName
+		      , WUB.USER_ACCOUNT as userBankAccount
+		  FROM WED_GUEST_BAS WGB
+		  JOIN WED_USER_BAS WUB
+		    ON WGB.USER_SRNO = WUB.USER_SRNO
+		  LEFT OUTER JOIN WED_GUEST_GRP WGG
+		    ON WGB.GUEST_GRPNO = WGG.GRP_GUEST_SRNO
+		  LEFT OUTER JOIN WED_COMM COM
+		    ON WUB.USER_BANK = COM.COM_KEY AND COM.COM_CATEGORY = 'BANK'
+		    WHERE RIGHT(WGB.GUEST_PHONE,4) = #{ lastPhoneNum }
+	   ) A
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- log file path -->
+    <property name="LOG_PATH" value="/svc/openmall/md/app/back/logs"/>
+    <!-- log file name -->
+    <property name="LOG_FILE_NAME" value="open-mall-back-md-service"/>
+    <!-- log pattern -->
+    <property name="LOG_PATTERN" value="%d{[yyyy.MM.dd HH:mm:ss]} [%-35.35c{1}:%line] %-5p %m%n"/>
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${LOG_PATTERN}</Pattern>
+        </layout>
+    </appender>
+
+	<logger name="org.springframework" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+  	<logger name="jdbc" level="OFF"/>
+  	<logger name="jdbc.audit" level="OFF"/>
+  	<logger name="jdbc.connection" level="OFF"/>
+  	<logger name="jdbc.sqlonly" level="OFF"/>
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+
+  	<logger name="jdbc.resultsettable" level="INFO" additivity="false">
+    	<appender-ref ref="STDOUT" />
+  	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="common">
+    <sql id="prevPage">
+    SELECT @ROWNUM:=@ROWNUM+1 AS RNUM
+         , PAGE.*
+      FROM (
+    </sql>
+    
+    <sql id="rownumPage">
+    , ( SELECT @ROWNUM := 0 ) R
+    </sql>
+
+    <sql id="postPage">
+           ) PAGE
+     ORDER BY RNUM DESC
+       LIMIT #{startIndex}, #{recordsPerPage}
+    </sql>
+    
+    <sql id="limitPage">
+      LIMIT #{startIndex}, #{recordsPerPage}
+    </sql>
+
+</mapper>

@@ -1,0 +1,39 @@
+# ===================================================================
+# DEV SPRING BOOT PROPERTIES
+# ===================================================================
+
+#logging:
+#  config: classpath:logback/logback-dev.xml
+
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://221.139.14.154:3366/OPENMALL
+    hikari:
+      username: openmall
+      password: dhvmsahf
+      max-lifetime: 300000
+      maximum-pool-size: 3
+
+server:
+  port: 9071
+
+apiUrl:
+  sample: http://127.0.0.1:9071/master/api/v1/sample
+  upload: http://127.0.0.1:9071/master/api/v1/upload
+
+file:
+  upload:
+    base:
+      path: /svc/mnt/openmallmd/upload
+    temp:
+      path: /svc/mnt/openmallmd/upload/temp
+    service:
+      wd: wd
+    allowExt: jpg,jpeg,png
+
+#jwt:
+#  public:
+#    key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiOVFcuLLPvJ8UHgnaEWQCekTWpKZiAbSKA9muAAbplTIJtjT24QRPHEI8FwZfSkMwVCzUi/CQZbFDUgCxjgUYkO16DGtjuDJSMBCf1ql5EKCZOOhQXa7QCm/4sWVFUQv1HGk8WRkEfcKthRa9E4aPwywJTbaVOiJ5OGPYZcIjpgZTuHhdHcCcLBlUjQyGkXyq5esYuCYia/jMOFE6DJ2CRnklSDuc3LDztEhABURMQ+Mn25CoNfI8+9mGxQucPDPEHT2o5TUD4RI4h/p+RPfGRlWHO6iWRdg0YrDf4vJ2DAy/4FmjjIZ6aqZ6tI09H6saP4w3pftWOOkjFcytWIiTwIDAQAB
+#  private:
+#    key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCI5UVy4ss+8nxQeCdoRZAJ6RNakpmIBtIoD2a4ABumVMgm2NPbhBE8cQjwXBl9KQzBULNSL8JBlsUNSALGOBRiQ7XoMa2O4MlIwEJ/WqXkQoJk46FBdrtAKb/ixZUVRC/UcaTxZGQR9wq2FFr0Tho/DLAlNtpU6Ink4Y9hlwiOmBlO4eF0dwJwsGVSNDIaRfKrl6xi4JiJr+Mw4UToMnYJGeSVIO5zcsPO0SEAFRExD4yfbkKg18jz72YbFC5w8M8QdPajlNQPhEjiH+n5E98ZGVYc7qJZF2DRisN/i8nYMDL/gWaOMhnpqpnq0jT0fqxo/jDel+1Y46SMVzK1YiJPAgMBAAECggEAQfAlLnw9J7nG1T+6w4fWJF/m2ZaJazLV4UPh1zj+GHT333ZLPY30e2d6xcOm51lxcl/7r9efOtZzXb1U0MNMVjSFFy1uisaNTYSFwzAXfcXnZs8Z6h1VfkddzM4czByG6U5AA6G2bczPlPpjAQ/ppnrnEVXFfmZvnRZkaL5F+eBm3ZynE9fBLTMmxJ4LYiPZWRqj8jEU03iU9vEW4x31ydhjWLgdRe6JMGnT+HlUdfd8kziOT7TWIk6iMVaHipXkzUa0Eb69IDC5xAwbMHH+5GDRUut5YBwXnN5rOet3G6xmEYuGcR1f66GQ4UnKLWK6cjz3cbaFRitmdGFjAC9AmQKBgQC9WyYvtABDc5TVqGsuff/62ZiQuypcq2NAdDC9MEfgFLxeKQ7at6xCcfXpn7V8mYVLjA4vikEWLJB2mCaprF0UGhFOVq2KMWjpAFmxOrxyoFosozA3VOUI1PZUlfy8ZaAouX9Ln9HUrzIK5avubfbxiT05erhwf16dip7t9fS/VQKBgQC5E3hxXVcFRrFXE0tcozrFzMH59/lCu5pEQzSO2nLnLuh3tdEaGWl2G1iCM9k19QFTNh/bfFtFgc6zLNyHmvh5c11Dn11kQ+8Ygo8W+mzObRZYFZcZgkI5jRZAzDIp1JjdmO79m/l6sA7ieoQqjblrcIBHEBE5jKynkrkgBbIzEwKBgHtnpuhZ3/4Vmn7wJwICvcvm+cYBJKeGTsXXs1fo2j7QZL7c9UBXiZ04FfLu0eFlT/ifSzNyX96qpm+T00aq/XI3VuX+GVVBxERtpQaa5+uwU3RZ2feFjUqHOA6CPVcuyAUidzJ68s4wa2WsrrNR2SkqrssCDqfKaogzqkYdECeNAoGBAKcrSxM6uCtv2ydHqj6WwbOAa4WZ0m/QfFtESOjvr/HZkOjwNVtZsMSZlqykoIH4N6YtsUDTZq21vjphPyDNfbpV1dwKypSSOBjvdMfQkw8xwYj2l3DXE3JgWcVVq8nU2e7vAI/antGOzSMMfuzg7qZ5C6Ukgip1Qk5qXQTroDY5AoGAPiht2eMsP/fn+zq+oxAFVZv6p1OQFAkclZuBu4MHXKruxmV9NlceOfIhDsfnCWGUe6pxG7HO82cpAxkvNDm2i8CvURTMY6p5VXCiuToGs8C8KSz7EBUuhl9PM2gB82hBuXCJgHTZw5xlR2cgxWbnk0mDE+TrM3IdhkVwZ+7dCQg=
